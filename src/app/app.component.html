@@ -1,4 +1,9 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<div class="container">
+  <h3> Http Service Demo </h3>
+  <input type="text" class="addArea" [(ngModel)]="vm.srcData"/>
+  <button class="addBtn" (click)="onAddData()">Add</button>
+
+  <div>
+    <ul><li *ngFor="let srcData of srcPoolData">{{srcData}}</li></ul>
+  </div>
+</div>
