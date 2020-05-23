@@ -17,4 +17,8 @@ export class ConfigService {
   public addPosts(posts: Posts): Observable<Posts> {
     return this.http.post<Posts>(this.configUrl, posts, {responseType: 'json'});
   }
+
+  public deletePost(id: number): Observable<{}> {
+    return this.http.delete(`${this.configUrl}/${id}`, {responseType: 'json'});
+  } 
 }

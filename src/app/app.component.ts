@@ -30,6 +30,14 @@ export class AppComponent implements OnInit {
                       });
   }
 
+  private onDeletePost(posts: Posts) {
+    const index = this.srcPoolData.indexOf(posts, 0);
+    if (index > -1) {
+      this.srcPoolData.splice(index, 1);
+    }
+    this.configService.deletePost(postId).subscribe();
+  }
+ 
   private getPosts() {
     this.configService.getPosts()
       .subscribe((data: any) => { this.srcPoolData = data; });

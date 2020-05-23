@@ -1,12 +1,23 @@
-<div class="container">
-   <h3> Http Service Demo </h3>
-   <input type="text" class="addArea" [(ngModel)]="vm.srcData"/>
-   <button class="btn btn-primary addPost" [disabled]="vm.isLoading" (click)="onAddPost()">
-      <i class="fa" [ngClass]="{'fa-spin fa-spinner': vm.isLoading, 'fa-check': !vm.isLoading}"></i> {{vm.buttonLbl}}
-   </button>
-   <div>
-      <ul>
-         <li *ngFor="let srcData of srcPoolData">{{srcData.title}}</li>
-      </ul>
-   </div>
+<div class="container-fluid">
+  <h3> Http Service Demo </h3>
+  <div class="col-sm-12 alert alert-success">
+    <strong>Warning!</strong> This demo is using <a href="https://jsonplaceholder.typicode.com/guide.html" class="alert-link">Mock/Fack DB</a>, so POST/DELETE won't reflect in server.
+  </div>
+  <div class="col-sm-6">
+  <div class="input-group">
+  <input type="text" class="form-control form-control-sm" [(ngModel)]="vm.srcData" placeholder="Add Post"/>
+  <div class="input-group-append">
+    <button class="btn btn-outline-primary addPost" [disabled]="vm.isLoading" (click)="onAddPost()">
+      <span [ngClass]="{'spinner-border spinner-border-sm': vm.isLoading }"></span> {{vm.buttonLbl}}
+    </button>
+  </div>
+</div>
+  <div>
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-light" *ngFor="let srcData of srcPoolData">{{srcData.title}}
+          <button type="button" class="btn btn-outline-danger deletePost" (click)="onDeletePost(srcData)">Delete</button>
+        </li>
+    </ul>
+  </div>
+  </div>
 </div>
