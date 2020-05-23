@@ -1,9 +1,3 @@
-html {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: content-box;
-}
-
-.addBtn {
-  margin: 5px;
+.addPost {
+  margin: 5px
 }

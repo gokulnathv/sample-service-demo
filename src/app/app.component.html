@@ -1,9 +1,12 @@
 <div class="container">
-  <h3> Http Service Demo </h3>
-  <input type="text" class="addArea" [(ngModel)]="vm.srcData"/>
-  <button class="addBtn" (click)="onAddData()">Add</button>
-
-  <div>
-    <ul><li *ngFor="let srcData of srcPoolData">{{srcData}}</li></ul>
-  </div>
+   <h3> Http Service Demo </h3>
+   <input type="text" class="addArea" [(ngModel)]="vm.srcData"/>
+   <button class="btn btn-primary addPost" [disabled]="vm.isLoading" (click)="onAddPost()">
+      <i class="fa" [ngClass]="{'fa-spin fa-spinner': vm.isLoading, 'fa-check': !vm.isLoading}"></i> {{vm.buttonLbl}}
+   </button>
+   <div>
+      <ul>
+         <li *ngFor="let srcData of srcPoolData">{{srcData.title}}</li>
+      </ul>
+   </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Config } from './Config';
+import { Posts } from './posts';
 import { ConfigService } from './config.service';
 
 @Component({
@@ -10,23 +10,39 @@ import { ConfigService } from './config.service';
 })
 export class AppComponent implements OnInit {
   public vm: any = {};
-  private config: Config;
-  private srcPoolData = [];
+  private srcPoolData: Posts[] = [];
 
-  constructor(private configService: ConfigService) {}
+  public constructor(private configService: ConfigService) {}
 
-  ngOnInit() {
-    this.showConfig();
+  public ngOnInit() {
+    this.handleLoadMask(false, 'Add Post');
+    this.getPosts();
   }
 
-  public onAddData() {
-    this.srcPoolData.push(this.vm.srcData);
+  private onAddPost() {
+    this.handleLoadMask(true, 'Adding Post');
+    let posts: Posts = new Posts(4, this.vm.srcData);
+    this.configService.addPosts(posts)
+                      .subscribe((post: any) => {
+                        this.handleLoadMask(false, 'Add Post');
+                        this.srcPoolData.push(post);
+                        this.vm.srcData = '';
+                      });
   }
 
-showConfig() {
-  this.configService.getConfig()
-    .subscribe((data: Config) => {
-      this.srcPoolData = data.srcData
-    });
-}
+  private getPosts() {
+    this.configService.getPosts()
+      .subscribe((data: any) => { this.srcPoolData = data; });
+  }
+
+  private handleLoadMask(isLoading: boolean, lblMsg: String) {
+    this.vm.isLoading = isLoading;
+    this.vm.buttonLbl = lblMsg;
+  }
+
+  private addPostHandler(post: Posts) {
+    this.handleLoadMask(false, 'Add Post');
+    this.srcPoolData.push(post);
+    this.vm.srcData = '';
+  }
 }

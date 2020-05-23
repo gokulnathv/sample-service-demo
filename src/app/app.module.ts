@@ -11,6 +11,6 @@ import { ConfigService } from './config.service';
   imports:      [ BrowserModule, HttpClientModule, FormsModule],
   declarations: [ AppComponent, HelloComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [ConfigService]
+  providers: [ ConfigService ]
 })
 export class AppModule { }
